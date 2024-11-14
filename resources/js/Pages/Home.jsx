@@ -1,7 +1,7 @@
-export default function Home() {
-          return (
-              <>
-              <h1 className="title">Hallo Guys</h1>
-              </>
-          );
+function Home({ name }) {
+    return (
+      <>
+        <h1 className="title">Hallo {name}</h1>
+      </>
+    );
 }
