@@ -1,12 +1,12 @@
 import { Link } from "@inertiajs/react";
 
-export default function Home({ name }) {
+export default function Home({ posts }) {
+  console.log(posts);
     return (
       <>
-        <h1 className="title">Hallo {name} </h1>
+        <h1 className="title">Hallo </h1>
 
-        <Link preserveScroll href="/" className="block title mt-[1000px]">
-        {new Date().toLocaleDateString()}</Link>
+        
       </>
     );
 }
