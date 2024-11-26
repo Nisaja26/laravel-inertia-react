@@ -21,10 +21,17 @@ export default function Home({ posts }) {
     <Head title={component} />  
 
         <h1 className="title">Hallo Nissa</h1>
-        {flashMsg &&<div className="absolute top-24 right-6 bg-rose-500 p-2 
+        {flashMsg &&(<div className="absolute top-24 right-6 bg-rose-500 p-2 
           rounded-md shadow-lg text-sm text-white"> 
           {flashMsg} 
-        </div>}
+        </div>
+        )}
+
+        {flash.success &&(<div className="absolute top-24 right-6 bg-green-500 p-2 
+          rounded-md shadow-lg text-sm text-white"> 
+          {flash.success}
+          </div>
+          )}
 
         <div>
           {posts.data.map(post => (

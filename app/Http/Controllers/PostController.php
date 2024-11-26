@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use function Pest\Laravel\post;
+
 class PostController extends Controller
 {
     /**
@@ -53,7 +55,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return inertia("Edit", ['post' => $post]);
     }
 
     /**
@@ -61,7 +63,25 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        sleep(1);
+        // berfungsi dalam 1 detik
+        $fields = $request->validate([
+            'body' => ['required']
+        ]);
+
+        $post->update($fields);
+        
+        return redirect('/')->with(
+            'success',
+           'Berhasil Update'
+        );
+
+        // penjelasan
+        // $fields = $request->validate(['body' => ['required'] ]);
+        // memunculkan tanda jika tak diisi
+        // $post->update($fields); merubah postingan
+        // return redirect('/'); kembali ke hal utama
+        
     }
 
     /**
@@ -73,7 +93,7 @@ class PostController extends Controller
 
         return redirect('/')->with(
             'message',
-           'The post was deleted!'
+           'Postingan di Hapus!'
             
         );
     }

@@ -1,24 +1,30 @@
 import { Head, useForm } from "@inertiajs/react";
+import { useRoute } from "../../../vendor/tightenco/ziggy";
+// akses yang diisntal
 
-export default function Create() {
-    const { data, setData, post, errors, processing } = useForm({
+export default function Create({ post }) {
+    const route = useRoute(); 
+    // sebuh akses 
+
+    const { data, setData, put, errors, processing } = useForm({
         body: "",
     });
 
     function submit(e) {
         e.preventDefault();
-        post('/posts');
-        // butoon create
+        // put(`/posts/${post.id}`);
+        // button create
+        put(route("posts.update", post));
     }
 
     console.log(errors);
 
     return (
         <>
-            <Head title="Create"/>
+            <Head title="Edit" />
             
 
-            <h1 className="title">Create a new post</h1>
+            <h1 className="title">Edit your post</h1>
 
             <div className="w-1/2 mx-auto">
                 <form onSubmit={submit}>
@@ -32,7 +38,7 @@ export default function Create() {
                     {errors.body && <p className="error">{errors.body}</p>}
 
                     <button className="primary-btn mt-4" disabled={processing}>
-                        Create Post
+                        Update Post
                     </button>
                 </form>
             </div>
