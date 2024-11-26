@@ -1,43 +1,40 @@
-import {useForm} from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 
-
-export default function Create(){
+export default function Create() {
     const { data, setData, post, errors, processing } = useForm({
         body: "",
     });
 
     function submit(e) {
         e.preventDefault();
-        post('/posts');
+        post("/posts");
     }
 
-    console.log(errors); 
-    
+    console.log(errors);
+
     return (
-    <>
-    
-    <h1 className="title">Create an new post</h1>
+        <>
+            <Head title="Create"/>
+            
 
-    <div className="w-1/2 mx-auto">
-        <form onSubmit={submit} >
-            <textarea rows="10" 
-              value={data.body} 
-              onChange={(e) => setData('body', e.target.
-              value)}
-              className={errors.body && '!ring-red-500'}
-            ></textarea>
+            <h1 className="title">Create a new post</h1>
 
-            {errors.body && <p className="error">{errors.body} 
-            </p>}
+            <div className="w-1/2 mx-auto">
+                <form onSubmit={submit}>
+                    <textarea
+                        rows="10"
+                        value={data.body}
+                        onChange={(e) => setData("body", e.target.value)}
+                        className={errors.body && "!ring-red-500"}
+                    ></textarea>
 
-            <button 
-            className="primary-btn mt-4" 
-            disabled={processing}
-            >
-                Create Post</button>
-        </form>
-    </div>
-    
-    </>
+                    {errors.body && <p className="error">{errors.body}</p>}
+
+                    <button className="primary-btn mt-4" disabled={processing}>
+                        Create Post
+                    </button>
+                </form>
+            </div>
+        </>
     );
 }

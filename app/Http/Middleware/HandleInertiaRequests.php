@@ -36,7 +36,18 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+                'flash' => [
+                    'message' => fn () => $request->session()->get('message')
+                ],
         ]);
+
+
+        // penjelasan
+        // funtion public berarti bisa diakses dari luar kelas
+        // array_merge() digunakan untuk menggabungkan dua array
+        // parent::share($request) menggabungkan data yang dibagikan oleh fungsi share() di kelas induk dengan data yang ditambahkan
+        // kunci 'flash', berisi array yang memiliki dua elemen: 'message' dan 'success'
+        // $request->session()->get('message') , 
+        // berarti mengambil data dengan kunci 'message'
     }
 }
